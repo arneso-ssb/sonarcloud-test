@@ -1,0 +1,17 @@
+[tool.poetry]
+name = "sonarcloud-test"
+version = "0.1.0"
+description = ""
+authors = ["Arne Sørli <81353974+arneso-ssb@users.noreply.github.com>"]
+readme = "README.md"
+packages = [{include = "sonarcloud_test"}]
+
+[tool.poetry.dependencies]
+python = "^3.10"
+jupyterlab = "^3.6.1"
+pandas = "^1.5.3"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
