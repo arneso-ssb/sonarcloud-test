@@ -2,6 +2,7 @@
 
 
 import pandas as pd
+from pathlib import *
 
 df = pd.read_csv("travel-insurance.csv")
 df
