@@ -33,7 +33,7 @@ jobs:
       - name: Install SonarCloud-CLI
         run: |
           CLI_BASENAME='sonar-scanner-cli-4.7.0.2747-linux'
-          wget "https://binaries.sonarsource.com/Distribution/sonar-scanner-cli/${CLI_BASENAME}.zip" -O sonar-scanner-cli.zip
+          wget "https://binaries.sonarsource.com/Distribution/sonar-scanner-cli/${CLI_BASENAME}.zip" -qO sonar-scanner-cli.zip
           unzip sonar-scanner-cli.zip
           mv "${CLI_BASENAME//cli-}" sonar-scanner-cli
 
