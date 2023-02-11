@@ -28,7 +28,7 @@ jobs:
 
       - name: Run jupytext
         run: |
-          poetry run jupytext --to py sonarcloud_test/jupyter.ipynb
+          find . -name '*.ipynb' -exec poetry run jupytext --to auto {} \;
 
       - name: SonarCloud Scan
         uses: SonarSource/sonarcloud-github-action@master
