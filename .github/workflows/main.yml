@@ -23,7 +23,7 @@ jobs:
 
       - name: Run jupytext
         run: |
-          find . -name '*.ipynb' -exec poetry run jupytext --to auto {} \;
+          find . -name '*.ipynb' -exec jupytext --to auto {} \;
 
       - name: Install SonarCloud-CLI
         run: |
