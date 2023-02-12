@@ -10,7 +10,11 @@ packages = [{include = "sonarcloud_test"}]
 python = "^3.10"
 jupyterlab = "^3.6.1"
 pandas = "^1.5.3"
+python-dotenv = "^0.21.1"
 
+
+[tool.poetry.group.dev.dependencies]
+jupytext = "^1.14.4"
 
 [build-system]
 requires = ["poetry-core"]
