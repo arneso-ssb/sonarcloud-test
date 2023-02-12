@@ -12,19 +12,14 @@ jobs:
         with:
           fetch-depth: 0  # Shallow clones should be disabled for a better relevancy of analysis
 
-      - name: Install poetry
-        run: pipx install poetry==1.3.2
-
       - name: Set up Python
         uses: actions/setup-python@v4
         with:
           python-version: "3.10"
-          cache: "poetry"
+          cache: "pip"
 
       - name: Install dependencies
-        run: |
-          poetry env use "3.10"     # Needed to cache dependencies
-          poetry install --no-root
+        run: pip install -r requirements.txt
 
       - name: Run jupytext
         run: |
