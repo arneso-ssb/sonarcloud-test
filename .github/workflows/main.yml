@@ -1,14 +1,17 @@
 name: CodeQuality
 on:
   push:
-    branches:
-      - main
+#    branches:
+#      - main
   pull_request:
     types: [opened, synchronize, reopened]
 jobs:
   quality:
     runs-on: ubuntu-latest
     steps:
+      - name: Debug
+        run: echo "${{ github.actor }}"
+
       - name: Checkout
         uses: actions/checkout@v3
         with:
@@ -27,21 +30,9 @@ jobs:
         run: |
           find . -name '*.ipynb' -exec jupytext --to auto {} \;
 
-      - name: Install SonarCloud-CLI
-        run: |
-          CLI_BASENAME='sonar-scanner-cli-4.7.0.2747-linux'
-          wget "https://binaries.sonarsource.com/Distribution/sonar-scanner-cli/${CLI_BASENAME}.zip" -qO /tmp/sonar-scanner-cli.zip
-          unzip -qd /tmp /tmp/sonar-scanner-cli.zip
-          mv "/tmp/${CLI_BASENAME//cli-}" /tmp/sonar-scanner-cli
-
-      - name: SonarCloud-CLI Scan
+      - name: SonarCloud Scan
+        if: ${{ github.actor != 'dependabot[bot]' }}
+        uses: SonarSource/sonarcloud-github-action@master
         env:
-          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}        
-        run: |
-          /tmp/sonar-scanner-cli/bin/sonar-scanner
-
-#      - name: SonarCloud Scan
-#        uses: SonarSource/sonarcloud-github-action@master
-#        env:
-#          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # Needed to get PR information, if any
-#          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # Needed to get PR information, if any
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
